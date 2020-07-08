@@ -10,60 +10,196 @@
 <head>
 
 <style>
-*{
-  margin: 0;
-  padding: 0;
-  font-family: 'Raleway', sans-serif;
-  scroll-behavior: smooth;
-}
 
+*{
+  text-align: center;
+}
 
 #container{
-  background-image: linear-gradient(to bottom right, lightyellow, lightblue);
-  display: flex;
+  background-color: #afb0b3;
   height: 100vh;
   width: 100vw;
-  justify-content: center;
+  display: flex;
   align-items: center;
+  justify-content: center;
 }
-#quote-box{
-  height: auto;
-  width: auto;
-  padding: 10px 30px 10px 30px;
+
+#calcont{
+  background-color: #101117;
   border-radius: 10px;
-  background: azure;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 50px);
+  grid-template-rows: repeat(7, 50px);
+  grid-gap: 10px;
+  grid-template-areas:
+      "input input input input"
+      "output output output output"
+      "AC AC div mult"
+      "seven eight nine sub"
+      "four five six plus"
+      "one two three equals"
+      "zero zero decimal equals";
 }
 
-#text{
-  font-family: Lobster, Monospace;
+
+#eqdisplay{
+  grid-area: input;
 }
 
-#author{
-  font-size: 15px;
+#display{
+  grid-area: output;
 }
 
-#tweet-quote{
-  text-align: center;
+#clear{
+  grid-area: AC;
+}
+
+#divide{
+  grid-area: div;
+}
+
+#multiply{
+  grid-area: mult;
+}
+
+#seven{
+  grid-area: seven;
+}
+
+#eight{
+  grid-area: eight;
+}
+
+#nine{
+  grid-area:nine;
+}
+
+#subtract{
+  grid-area:sub;
+}
+
+#four{
+  grid-area: four;
+}
+
+#five{
+  grid-area: five;
+}
+
+#six{
+  grid-area: six;
+}
+
+#three{
+  grid-area: three;
+}
+
+#two{
+  grid-area: two;
+}
+
+#one{
+  grid-area: one;
+}
+
+#zero{
+  grid-area: zero;
+}
+
+#add{
+  grid-area: plus;
+}
+
+#equals{
+  grid-area: equals;
+}
+
+#decimal{
+  grid-area: decimal;
+  border-width: 0px;
+  font-size: 20px;
+  color: #101117;
+  font-weight: 1000;
+}
+
+.clear{
+  background-color: #8f0b18;
+  border-width: 0px;
+  font-size: 20px;
+  color: #101117;
+}
+
+.display{
+  font-family:'Orbitron';
+  font-size: 30px;
+  font-weight: 1000;
+  text-align: right;
+  color: #ffffff;
+  overflow: hidden
+}
+
+.equals{
+  background-color: #078526;
+  border-width: 0px;
   font-size: 50px;
-  color: grey;
-  text-decoration: none;
+  color: #101117;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-#new-quote{
-  text-align: center;
-  margin-top: 8px;
-  height: 50px;
-  width: 100px;
-  color: white;
-  border-radius: 4px;
-  background-color: grey;
+.num{
+  background-color: #916c03;
+  border-width: 0px;
+  font-size: 20px;
+  color: #101117;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.op{
+  background-color: #0494c4;
+  border-width: 0px;
+  font-size: 20px;
+  color: #101117;
+}
+
+/*Add @media here to make it better for widescreen phone view*/
+
+@media (max-height: 600px){
+  
+#calcont{
+  display: grid;
+  grid-template-columns: repeat(8, 50px);
+  grid-template-rows: repeat(5, 50px);
+  grid-gap: 10px;
+  grid-template-areas:
+      "input input input input input input input input"
+      "output output output output output output output output"
+      "AC AC equals equals seven eight nine zero"
+      "div div mult mult four five six zero"
+      "plus plus sub sub one two three decimal";
+
+}
+  
+.equals{
+  background-color: #078526;
+  border-width: 0px;
+  font-size: 30px;
+  color: #101117;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+  
+}
+
 </style>
 
 <body>
 
-<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
-<!-- FCC TESTING SCRIPT ABOVE -->
 
   <script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.13.1/umd/react-dom.production.min.js" crossorigin></script>
