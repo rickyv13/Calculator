@@ -1,0 +1,203 @@
+
+<head>
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'> <!--digital clock text -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/> <!-- Bootstrap -->
+  
+ <!-- Bootstrap -->
+  
+<head>
+
+<style>
+*{
+  margin: 0;
+  padding: 0;
+  font-family: 'Raleway', sans-serif;
+  scroll-behavior: smooth;
+}
+
+
+#container{
+  background-image: linear-gradient(to bottom right, lightyellow, lightblue);
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+}
+#quote-box{
+  height: auto;
+  width: auto;
+  padding: 10px 30px 10px 30px;
+  border-radius: 10px;
+  background: azure;
+}
+
+#text{
+  font-family: Lobster, Monospace;
+}
+
+#author{
+  font-size: 15px;
+}
+
+#tweet-quote{
+  text-align: center;
+  font-size: 50px;
+  color: grey;
+  text-decoration: none;
+}
+
+#new-quote{
+  text-align: center;
+  margin-top: 8px;
+  height: 50px;
+  width: 100px;
+  color: white;
+  border-radius: 4px;
+  background-color: grey;
+}
+</style>
+
+<body>
+
+<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+<!-- FCC TESTING SCRIPT ABOVE -->
+
+  <script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.13.1/umd/react-dom.production.min.js" crossorigin></script>
+  <script>
+  class Calculator extends React.Component {
+  state = {
+    input: '',
+    output: '0'
+  }
+  
+ display = (event) => {
+      this.setState({
+         input: this.state.input.concat(event.target.value),
+         output: this.state.output.concat(event.target.value).replace(/^0/,'')
+      });
+  }
+  
+clear = () => {
+      this.setState({
+         input: '',
+         output: '0'
+      });
+  }
+  
+
+opDisplay = (event) =>{
+  const eqReg = /=$/;
+  const opReg = /[\+|\-|\*|\/]+$/;
+  console.log(opReg.test(this.state.input));
+  
+  if(eqReg.test(this.state.input) == true){
+    this.setState({
+         input: this.state.output.toString().concat(event.target.value),
+         output: '0'
+      }); 
+  }else if(opReg.test(this.state.input) == true){
+      this.setState({
+         input: this.state.input.replace(opReg, '').concat(event.target.value),
+         output: '0'
+      }); 
+  }else{
+      this.setState({
+         input: this.state.input.concat(event.target.value),
+         output: '0'
+      }); 
+  }
+}
+  
+minusDisplay = (event) =>{
+  const eqReg = /=$/;
+  const Reg = /\-$/;
+  console.log(Reg.test(this.state.input));
+  
+  if(eqReg.test(this.state.input) == true){
+    this.setState({
+         input: this.state.output.toString().concat(event.target.value),
+         output: '0'
+      }); 
+  }else if(Reg.test(this.state.input) == true){
+      this.setState({
+         input: this.state.input,
+         output: this.state.output
+      }); 
+  }else{
+      this.setState({
+         input: this.state.input.concat(event.target.value),
+         output: '0'
+      }); 
+  }
+}
+  
+decDisplay = (event) =>{
+  const decReg = /\./;
+  console.log(decReg.test(this.state.output));
+  
+  if(decReg.test(this.state.output) == false){
+    this.setState({
+         input: this.state.input.concat(event.target.value),
+         output: this.state.output.toString().concat(event.target.value)
+      }); 
+  }else{
+      this.setState({
+         input: this.state.input,
+         output: this.state.output
+      }); 
+  }
+}
+  
+equals = (event) =>{
+      this.setState({
+         input: this.state.input.concat(event.target.value),
+         output: eval(this.state.input)
+      }); 
+}
+  render() {
+    return(
+  <div>
+     <div id = 'calcont'>   
+        <p  id = 'eqdisplay' value = {this.state.input} className = 'display'>{this.state.input}</p>
+        <p id = 'display' value = {this.state.output} className = 'display'>{this.state.output}</p>
+       
+        <button id = 'clear' onClick = {this.clear} className='clear btn btn-default target'>AC</button>
+        <button id = 'equals' value = '=' onClick = {this.equals} className='equals btn btn-default target' >=</button>
+        
+        <button id = 'zero' value = '0' onClick = {this.display} className='num btn btn-default target'>0</button>
+        <button id = 'one' value = '1' onClick = {this.display} className='num btn btn-default target'>1</button>
+        <button id = 'two' value = '2' onClick = {this.display} className='num btn btn-default target'>2</button>
+        <button id = 'three' value = '3' onClick = {this.display} className='num btn btn-default target'>3</button>
+        <button id = 'four' value = '4' onClick = {this.display} className='num btn btn-default target'>4</button>
+        <button id = 'five' value = '5' onClick = {this.display} className='num btn btn-default target'>5</button>
+        <button id = 'six' value = '6' onClick = {this.display} className='num btn btn-default target'>6</button>
+        <button id = 'seven' value = '7' onClick = {this.display} className='num btn btn-default target'>7</button>
+        <button id = 'eight' value = '8' onClick = {this.display} className='num btn btn-default target'>8</button>
+        <button id = 'nine' value = '9' onClick = {this.display} className='num btn btn-default target'>9</button>
+        <button id = 'decimal' value = '.' onClick = {this.decDisplay} className='num btn btn-default target'>.</button>
+ 
+        
+
+        <button id = 'add' value = '+' onClick = {this.opDisplay} className='op btn btn-default target'>+</button>
+        <button id = 'subtract' value = '-' onClick = {this.minusDisplay} className='op btn btn-default target'>-</button>
+        <button id = 'multiply' value = '*' onClick = {this.opDisplay} className='op btn btn-default target'>x</button>
+        <button id = 'divide' value = '/' onClick = {this.opDisplay} className='op btn btn-default target'>/</button>
+       </div>
+ </div>
+    );
+  }
+};
+
+ReactDOM.render(<Calculator />, document.getElementById('calc'));
+  </script>
+
+
+<div id = 'container' class='container-fluid'>
+     <div id = 'calc'></div>
+</div>
+
+</body>
